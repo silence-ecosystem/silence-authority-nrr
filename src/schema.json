@@ -1,0 +1,49 @@
+{
+  "$id": "https://github.com/silence-ecosystem/silence-authority-nrr/src/schema.json",
+  "title": "SILENCE.ROOT EventEnvelope v1",
+  "type": "object",
+  "required": ["type", "version", "timestamp", "session_id", "persona", "user_id", "payload", "provenance"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "SILENCE.ROOT_SESSION_STARTED",
+        "SILENCE.ROOT_SESSION_COMPLETED",
+        "SILENCE.ROOT_LANGUAGE_SWITCH",
+        "SILENCE.ROOT_APPROVAL_REQUESTED",
+        "SILENCE.ROOT_APPROVAL_ACK",
+        "SILENCE.ROOT_APPROVAL_DENIED",
+        "SILENCE.ROOT_CHILD_CONTEXT_SWITCH",
+        "SILENCE.ROOT_PUBLIC_FRONT_INTERACTION"
+      ]
+    },
+    "version": { "const": "v1" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "session_id": { "type": "string", "minLength": 8 },
+    "persona": { "type": "string" },
+    "user_id": { "type": "string", "minLength": 8 },
+    "payload": {
+      "type": "object",
+      "required": ["language", "duration_ms", "completed_phi_session", "child_persona_called", "approval_status", "public_front", "tokens_used", "cost_to_serve_usd"],
+      "properties": {
+        "language": { "enum": ["pl", "en", "es", "hi", "ar"] },
+        "duration_ms": { "type": "number", "minimum": 0 },
+        "completed_phi_session": { "type": "boolean" },
+        "child_persona_called": { "type": ["string", "null"] },
+        "approval_status": { "enum": ["none", "requested", "ack", "denied"] },
+        "public_front": { "type": "boolean" },
+        "tokens_used": { "type": "number", "minimum": 0 },
+        "cost_to_serve_usd": { "type": "number", "minimum": 0 }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["model", "build", "s11_commit_id"],
+      "properties": {
+        "model": { "type": "string" },
+        "build": { "type": "string" },
+        "s11_commit_id": { "type": "string" }
+      }
+    }
+  }
+}
