@@ -57,3 +57,7 @@ See `src/nrr.ts`.
 
 Do not import private EE packages into this module.
 Consumers talk through this contract only.
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).

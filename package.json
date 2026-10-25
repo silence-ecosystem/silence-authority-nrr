@@ -2,7 +2,7 @@
   "name": "@silence/authority-nrr",
   "version": "0.1.0",
   "description": "Public MIT contract for SILENCE authority-persona events and NRR instrumentation.",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "type": "module",
   "main": "src/index.js",
   "types": "src/index.ts",
